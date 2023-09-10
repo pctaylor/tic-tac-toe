@@ -2,14 +2,19 @@
 
 //Set up the board game ---------------------------------------
 const GameBoard = (() => {
-    let board = [...Array(3)].map(e => Array(3).fill(null));
+    let boardClean = () => {
+        return [...Array(3)].map(e => Array(3).fill(null));
+        }
+    let board = boardClean();
     
     // Have a function that resets the board to its start state
     const resetBoard = () => {
-        board = [...Array(3)].map(e => Array(3).fill(null));
+        board = boardClean();
     }
     return {
-        board: board,
+        get board() {
+            return board;
+        },
         resetBoard
     };
 })();
@@ -39,8 +44,8 @@ const Player = (name, symbol) => {
 const Game = (() => {
 
     // Create players
-    const player1 = Player("player1", 'X');
-    const player2 = Player("player2", 'O');
+    const player1 = Player("Player 1", 'X');
+    const player2 = Player("Player 2", 'O');
 
     // Game Round - Control for game flow of turns
     const round = (player) => {
@@ -50,12 +55,14 @@ const Game = (() => {
             const solicitMove = prompt(`${player.name} move. Enter row and column separated by space`);
             [row, column] = solicitMove.split(' ');
             move = player.move(row, column);
-            console.log("post loop : " + move)
         };
-        console.log(GameBoard.board)
+        console.log(GameBoard.board);
     };
     round(player1);
-    
+    round(player2);
+    GameBoard.resetBoard();
+    console.log("Post Reset: ");
+    console.log(GameBoard.board);
 })();
 
 
