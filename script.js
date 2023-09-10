@@ -38,10 +38,33 @@ const Game = (() => {
     const player2 = Player('O');
 
     // Game Round - Control for game flow of turns
-    const solicitMove = prompt('Player 1 Move. Enter row and column separated by space');
+
+    /*
+    let solicitMove = prompt('Player 1 Move. Enter row and column separated by space');
     [row, column] = solicitMove.split(' ');
     player1.move(row, column);
     console.log(GameBoard.board)
+
+    solicitMove = prompt('Player 2 Move. Enter row and column separated by space');
+    [row, column] = solicitMove.split(' ');
+    player2.move(row, column);
+    console.log(GameBoard.board)
+    */
+
+    const round = (player) => {
+        console.log(player.name);
+        let move = false; 
+        while (move === false) {
+            const solicitMove = prompt(`${player.name} move. Enter row and column separated by space`);
+            [row, column] = solicitMove.split(' ');
+            move = player.move(row, column);
+        };
+        console.log(GameBoard.board)
+    };
+    round(player1);
+    round(player2);
+    
+    
 })();
 
 
