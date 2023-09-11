@@ -7,10 +7,32 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Tic Tac Toe</h1>
-    <div id="board"></div>
-    <button id="reset">Restart</button>
-    <div id="winner"></div>
+    <div class="container">
+        
+        <h1>Tic Tac Toe</h1>
+        
+        <div class="gameStatus">Begin Game</div>
+
+        <div id="board">
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+        </div>
+            
+        <div class="players">
+            <div class="player"><b>Player 1:</b> X</div>
+            <div class="player"><b>Player 2:</b> O</div>
+        </div>
+        
+        <button id="reset">Restart</button>
+    
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
