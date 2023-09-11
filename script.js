@@ -98,7 +98,6 @@ const Game = (() => {
 
     // Game Round - Control for game flow of turns
     const round = (player) => {
-        console.log(GameBoard.board);
         console.log(player.name);
 
         // Player move, checking for whether the move is viable
@@ -108,72 +107,25 @@ const Game = (() => {
             [row, column] = solicitMove.split(' ');
             move = player.move(row, column);
         };
-
-        // Check if the player has won
-        let statusCheck = GameBoard.checkWin();
-        if (statusCheck === player.symbol) {
-            console.log(`${player.name} wins!`);
-            return true;
-        } else {
-            return false;
-        };
+        console.table(GameBoard.board);
     };
 
-    round(player1);
-
+    const match = (player1, player2) => {
+        const players = [player1, player2];
+        let turn = 0;
+        let winner = null; // Declare winner variable here
+        while (winner === null) {
+            const currentPlayer = players[turn % 2];
+            round(currentPlayer);
+            let statusCheck = GameBoard.checkWin();
+            console.log("Status Check: " + statusCheck);
+            if (statusCheck === currentPlayer.symbol) {
+                winner = currentPlayer.symbol;
+                console.log(`${currentPlayer.name} wins!`);
+                return currentPlayer.name;
+            }
+            turn++; // Increment the turn counter to switch players
+        }
+    };    
+    match(player1, player2);
 })();
-
-round(player1);
-round(player2);
-
-/*
-function tests() {
-    console.log(GameBoard.board);
-    const player1 = Player('X');
-    player1.move(1, 2);
-    console.log(GameBoard.board);
-    GameBoard.resetBoard;
-    console.log(GameBoard.board);
-};
-tests();
-*/
-
-
-
-
-  
-  
-
-// Announce Win
-
-
-/* ------------------------------
-|*  VISUAL DISPLAY OF BOARD
-|*------------------------------*/
-
-// Render board
-
-// Reset game with button
-
-
-
-/*
-    let solicitMove = prompt('Player 1 Move. Enter row and column separated by space');
-    [row, column] = solicitMove.split(' ');
-    player1.move(row, column);
-    console.log(GameBoard.board)
-
-    solicitMove = prompt('Player 2 Move. Enter row and column separated by space');
-    [row, column] = solicitMove.split(' ');
-    player2.move(row, column);
-    console.log(GameBoard.board)
-
-
-    GameBoard.setBoard([
-    ['X', 'O', 'X'],
-    ['O', 'X', 'O'],
-    ['O', 'X', 'O']
-  ]);
-console.log(GameBoard.checkWin());  // Output should be null (no winner)
-
-    */
