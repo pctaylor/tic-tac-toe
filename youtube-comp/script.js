@@ -1,3 +1,5 @@
+//https://www.youtube.com/watch?v=Y-GkMjUZsmM
+
 const X_CLASS = 'x'
 const O_CLASS = 'o'
 const WINNING_COMBINATIONS = [
