@@ -4,7 +4,7 @@
 
 :root {
     --cell-size: 100px;
-    --mark-size: calc(var(--cell-size)) * 0.9);
+    --mark-size: calc(var(--cell-size) * 0.9);
 }
 
 body {
@@ -26,6 +26,11 @@ body {
     width: var(--cell-size);
     height: var(--cell-size);
     border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
 }
 
 .cell:first-child,
@@ -44,4 +49,45 @@ body {
 
 .cell:nth-child(n+7) {
     border-bottom: none;
+}
+
+.cell.x,
+.cell.o {
+    cursor: not-allowed;
+}
+
+.cell.x::before,
+.cell.x::after {
+    content: '';
+    width: calc(var(--mark-size) * 0.2);
+    height: var(--mark-size);
+    background-color: black;
+    position: absolute;
+}
+
+.cell.x::before {
+    transform: rotate(45deg);
+}
+
+.cell.x::after {
+    transform: rotate(-45deg);
+}
+
+.cell.o::before,
+.cell.o::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+}
+
+.cell.o::before {
+    width: var(--mark-size);
+    height: var(--mark-size);
+    background-color: black;
+}
+
+.cell.o::after {
+    width: calc(var(--mark-size) * 0.6);
+    height: calc(var(--mark-size) * 0.6);
+    background-color: white;
 }
